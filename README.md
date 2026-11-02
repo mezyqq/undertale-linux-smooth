@@ -55,6 +55,16 @@ deltarune/patch-wasd.sh "/путь/к/steamapps/common/DELTARUNE"
 
 Скрипт патчит меню выбора глав и каждую главу, а оригиналы сохраняет рядом как `data.win.pre-wasd`. После обновления игры или переустановки русификатора запустите его ещё раз.
 
+### Deltarune: 60 FPS вместе с русификатором
+
+[60 FPS Overhaul](https://gamebanana.com/mods/688311) (главы 1–5, скорость игры не меняется) сам по себе ставится только на чистую английскую игру. `deltarune/patch-60fps-ru.sh` накладывает его поверх уже установленного русификатора LazyDesman. Функции, которые меняют оба мода, сливаются: берётся русский код, и в него переносятся правки 60 FPS (`deltarune/ru-60fps/`). Нужны `git` и `python3`, пакет *advanced* с GameBanana и оригинальные `data.win` той же версии игры, их скрипт проверяет по SHA-256:
+
+```bash
+deltarune/patch-60fps-ru.sh "/путь/к/DELTARUNE" deltarune_60fps_advanced_v202.zip "/путь/к/оригинальной/DELTARUNE"
+```
+
+Русские файлы без 60 FPS сохраняются как `data.win.pre-60fps`. Если стоял WASD, он ставится заново. Скрипт рассчитан на 60 FPS v2.0.2 и русификатор 5.0.8 для Deltarune V23. Если после обновления какой-то из них не сольётся, скрипт остановится и игру не тронет.
+
 ## Как понять, что работает
 
 - В движении (ходьба, прокрутка камеры) картинка заметно плавнее.
@@ -142,6 +152,8 @@ Mods for the **native Linux version of Undertale on Steam**:
 - **WASD** (optional): W/A/S/D act as arrow keys (patches `game.unx` with UndertaleModTool, keeps a backup).
 - **Deltarune WASD**: `deltarune/patch-wasd.sh /path/to/DELTARUNE` patches the chapter select and chapters 1–5
   (Windows version under Proton; run it after installing a translation). No smoothing for Deltarune.
+- **Deltarune 60 FPS + Russian**: `deltarune/patch-60fps-ru.sh /path/to/DELTARUNE <60fps advanced zip> /path/to/vanilla`
+  puts the 60 FPS Overhaul v2.0.2 under the LazyDesman translation by 3-way merging the entries both mods change.
 
 No game files are included; you need your own copy from Steam.
 
