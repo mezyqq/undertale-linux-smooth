@@ -28,7 +28,8 @@ find_game() {
     done | head -n 1
 }
 
-[ -n "$game" ] || game=$(find_game)
+# head closes the pipe early: SIGPIPE + pipefail must not abort the script
+[ -n "$game" ] || game=$(find_game || true)
 if [ -z "$game" ] || [ ! -d "$game" ]; then
     echo "Undertale not found. Pass its folder: ./install.sh --dir /path/to/steamapps/common/Undertale" >&2
     exit 1
