@@ -45,6 +45,16 @@
 
 Сначала поставьте русификатор, потом этот мод. Патч WASD меняет данные игры (`assets/game.unx`): если поставить русификатор позже, он перезапишет патч. В этом случае просто выполните `./install.sh --wasd` ещё раз. Плавность и раскладка от русификатора не зависят.
 
+## Deltarune: WASD
+
+Для Deltarune (Windows-версия через Proton, главы 1–5) есть отдельный патч WASD. Плавность на неё не ставится. Сначала поставьте русификатор, если нужен (он заменяет `data.win`), потом:
+
+```bash
+deltarune/patch-wasd.sh "/путь/к/steamapps/common/DELTARUNE"
+```
+
+Скрипт патчит меню выбора глав и каждую главу, а оригиналы сохраняет рядом как `data.win.pre-wasd`. После обновления игры или переустановки русификатора запустите его ещё раз.
+
 ## Как понять, что работает
 
 - В движении (ходьба, прокрутка камеры) картинка заметно плавнее.
@@ -130,6 +140,8 @@ Mods for the **native Linux version of Undertale on Steam**:
 - **Smooth frames** up to 144 FPS (capped at the display's refresh rate). Game logic stays at its original 30 ticks/s, so game speed is unchanged; in-between frames are interpolated by replaying the last frame's OpenGL commands with sprites moved along their motion, paced to the hardware vblank.
 - **Layout fix**: W/A/S/D/Z/X/C work with any keyboard layout (e.g. Russian).
 - **WASD** (optional): W/A/S/D act as arrow keys (patches `game.unx` with UndertaleModTool, keeps a backup).
+- **Deltarune WASD**: `deltarune/patch-wasd.sh /path/to/DELTARUNE` patches the chapter select and chapters 1–5
+  (Windows version under Proton; run it after installing a translation). No smoothing for Deltarune.
 
 No game files are included; you need your own copy from Steam.
 
